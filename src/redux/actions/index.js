@@ -3,6 +3,8 @@ const USER_LOGIN = 'USER_LOGIN';
 const UPDATE_TOTAL = 'UPDATE_TOTAL';
 const UPDATE_CURRENT_EXPENSE = 'UPDATE_CURRENT_EXPENSE';
 const GET_COINS = 'GET_COINS';
+const ON_EDITOR = 'ON_EDITOR';
+const ADD_EXPENSE = 'ADD_EXPENSE';
 
 const userLogin = ({ email }) => ({
   type: USER_LOGIN,
@@ -25,11 +27,32 @@ const updateCurrentExpense = (name, value) => ({
   },
 });
 
+const onEditor = (id) => ({
+  type: ON_EDITOR,
+  id,
+});
+
 export function fetchApi() {
   return async (dispatch) => {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const data = await response.json();
     dispatch(actionGetCoins(data));
+  };
+}
+
+const addExpense = (expense, exchanges) => ({
+  type: ADD_EXPENSE,
+  payload: {
+    ...expense,
+    exchangeRates: exchanges,
+  },
+});
+
+export function fetchAddExpense(expense) {
+  return async (dispatch) => {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const data = await response.json();
+    dispatch(addExpense(expense, data));
   };
 }
 
@@ -42,4 +65,8 @@ export {
   UPDATE_CURRENT_EXPENSE,
   GET_COINS,
   actionGetCoins,
+  ON_EDITOR,
+  onEditor,
+  ADD_EXPENSE,
+  addExpense,
 };
