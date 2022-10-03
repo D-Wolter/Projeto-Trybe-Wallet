@@ -39,7 +39,8 @@ describe('Tests for Trybe Wallet application', () => {
     expect(newValueInput).toBeInTheDocument();
 
     const currencyseletor = screen.getAllByRole('combobox');
-    expect(currencyseletor.length).toBe(3);
+    const num = 3;
+    expect(currencyseletor.length).toBe(num);
 
     const inputValue = screen.getByPlaceholderText(/value/i);
     expect(inputValue).toBeInTheDocument();
