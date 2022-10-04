@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 import { removeAction } from '../redux/actions';
 
 class Table extends Component {
-  state = {
-    redirect: false,
-  };
-
   render() {
-    const { redirect } = this.state;
     const { expenses, removeExpense } = this.props;
     return (
       <div>
@@ -97,7 +91,6 @@ class Table extends Component {
               </tbody>
             </table>
           )}
-        { redirect && <Redirect to="/carteira" /> }
       </div>
     );
   }
