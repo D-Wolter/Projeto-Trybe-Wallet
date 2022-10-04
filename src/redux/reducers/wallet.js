@@ -4,6 +4,7 @@ import {
   GET_COINS,
   ON_EDITOR,
   ADD_EXPENSE,
+  REMOVE_EXPENSE,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -32,6 +33,10 @@ const wallet = (state = INITIAL_STATE, action) => {
     };
   case ADD_EXPENSE:
     return { ...state, expenses: [...state.expenses, action.payload] };
+  case REMOVE_EXPENSE: return {
+    ...state,
+    expenses: state.expenses.filter(({ id }) => id !== action.id),
+  };
   default:
     return state;
   }

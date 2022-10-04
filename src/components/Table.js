@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { removeAction } from '../redux/actions';
 
 class Table extends Component {
   state = {
@@ -10,7 +11,7 @@ class Table extends Component {
 
   render() {
     const { redirect } = this.state;
-    const { expenses } = this.props;
+    const { expenses, removeExpense } = this.props;
     return (
       <div>
         {expenses.length === 0
@@ -82,6 +83,8 @@ class Table extends Component {
                       >
                         Editar
                       </button>
+                    </td>
+                    <td>
                       <button
                         type="button"
                         data-testid="delete-btn"
@@ -111,6 +114,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   expenses: PropTypes.instanceOf(Array).isRequired,
+  removeExpense: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

@@ -5,6 +5,7 @@ const UPDATE_CURRENT_EXPENSE = 'UPDATE_CURRENT_EXPENSE';
 const GET_COINS = 'GET_COINS';
 const ON_EDITOR = 'ON_EDITOR';
 const ADD_EXPENSE = 'ADD_EXPENSE';
+const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 
 const userLogin = ({ email }) => ({
   type: USER_LOGIN,
@@ -56,6 +57,11 @@ export function fetchAddExpense(expense) {
   };
 }
 
+export const removeAction = (id) => ({
+  type: REMOVE_EXPENSE,
+  id,
+});
+
 export {
   USER_LOGIN,
   userLogin,
@@ -69,4 +75,5 @@ export {
   onEditor,
   ADD_EXPENSE,
   addExpense,
+  REMOVE_EXPENSE,
 };
