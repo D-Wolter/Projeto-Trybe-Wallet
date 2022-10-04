@@ -17,17 +17,19 @@ class Table extends Component {
         {expenses.length === 0
           ? (
             <table>
-              <tr>
-                <th>Descrição</th>
-                <th>Tag</th>
-                <th>Método de pagamento</th>
-                <th>Valor</th>
-                <th>Moeda</th>
-                <th>Câmbio utilizado</th>
-                <th>Valor convertido</th>
-                <th>Moeda de conversão</th>
-                <th>Editar/Excluir</th>
-              </tr>
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Tag</th>
+                  <th>Método de pagamento</th>
+                  <th>Valor</th>
+                  <th>Moeda</th>
+                  <th>Câmbio utilizado</th>
+                  <th>Valor convertido</th>
+                  <th>Moeda de conversão</th>
+                  <th>Editar/Excluir</th>
+                </tr>
+              </thead>
             </table>
           )
           : (
@@ -47,7 +49,7 @@ class Table extends Component {
               </thead>
               <tbody>
                 { expenses.length > 0 && (expenses.map((elem) => (
-                  <tr key={ `${elem.id}` }>
+                  <tr key={ `${elem.id}${elem.description}` }>
                     <td>{elem.description}</td>
                     <td>{elem.tag}</td>
                     <td>{elem.method}</td>
@@ -78,7 +80,6 @@ class Table extends Component {
                         data-testid="edit-btn"
                         onClick={ () => {
                           receiveEdit(elem.id);
-                          this.setState({ redirect: true });
                         } }
                       >
                         Editar
