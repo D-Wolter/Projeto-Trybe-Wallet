@@ -73,7 +73,6 @@ class Table extends Component {
                         type="button"
                         data-testid="edit-btn"
                         onClick={ () => {
-                          receiveEdit(elem.id);
                         } }
                       >
                         Editar
