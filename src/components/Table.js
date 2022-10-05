@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { removeAction } from '../redux/actions';
+import '../sass/components/ExpensesTable.css';
+import 'bulma/css/bulma.min.css';
 
 class Table extends Component {
   render() {
@@ -10,7 +12,7 @@ class Table extends Component {
       <div>
         {expenses.length === 0
           ? (
-            <table>
+            <table className="ExpensesTable table is-fullwidth is-hoverable">
               <thead>
                 <tr>
                   <th>Descrição</th>
@@ -27,7 +29,7 @@ class Table extends Component {
             </table>
           )
           : (
-            <table>
+            <table className="ExpensesTable table is-fullwidth is-hoverable">
               <thead>
                 <tr>
                   <th>Descrição</th>
@@ -68,8 +70,9 @@ class Table extends Component {
                       }
                     </td>
                     <td>Real</td>
-                    <td>
+                    <td className="Button-container">
                       <button
+                        className="button is-warning is-small"
                         type="button"
                         data-testid="edit-btn"
                         onClick={ () => {
@@ -78,6 +81,7 @@ class Table extends Component {
                         Editar
                       </button>
                       <button
+                        className="button is-danger is-small"
                         type="button"
                         data-testid="delete-btn"
                         onClick={ () => removeExpense(elem.id) }

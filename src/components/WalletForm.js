@@ -1,7 +1,10 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchApi, fetchAddExpense } from '../redux/actions';
+import '../sass/components/ExpenseForm.css';
+import 'bulma/css/bulma.min.css';
 
 class WalletForm extends Component {
   state = {
@@ -53,83 +56,94 @@ class WalletForm extends Component {
 
   render() {
     const { description, value, currency, method, tag } = this.state;
-    const { currencies, isDisabled } = this.props;
+    const { currencies } = this.props;
     return (
-      <div>
-        <input
-          type="number"
-          data-testid="value-input"
-          value={ value }
-          name="value"
-          onChange={ (event) => this.handleChange(event) }
-          placeholder="Value"
-        />
+      <form className="ExpenseForm box">
 
-        <input
-          type="text"
-          data-testid="description-input"
-          value={ description }
-          name="description"
-          onChange={ (event) => this.handleChange(event) }
-        />
-
-        <select
-          data-testid="currency-input"
-          value={ currency }
-          name="currency"
-          onChange={ (event) => this.handleChange(event) }
-        >
-          {
-            currencies.map((item, index) => <option key={ index }>{item}</option>)
-          }
-        </select>
-
-        <select
-          data-testid="method-input"
-          value={ method }
-          name="method"
-          onChange={ (event) => this.handleChange(event) }
-        >
-          <option>Dinheiro</option>
-          <option>Cartão de crédito</option>
-          <option>Cartão de débito</option>
-        </select>
-
-        <select
-          data-testid="tag-input"
-          value={ tag }
-          name="tag"
-          onChange={ (event) => this.handleChange(event) }
-        >
-          <option>Alimentação</option>
-          <option>Lazer</option>
-          <option>Trabalho</option>
-          <option>Transporte</option>
-          <option>Saúde</option>
-        </select>
-        {
-          !isDisabled ? (
+        <div>
+          <div className="control">
+            <input
+              className="input"
+              type="number"
+              data-testid="value-input"
+              value={ value }
+              name="value"
+              onChange={ (event) => this.handleChange(event) }
+              placeholder="Valor"
+            />
+          </div>
+          <div className="control">
             <div>
-              <button
-                type="button"
-                onClick={ this.handleClick }
-              >
-                Adicionar Despesa
-              </button>
+              <input
+                className="input"
+                type="text"
+                data-testid="description-input"
+                value={ description }
+                name="description"
+                placeholder="Descrição"
+                onChange={ (event) => this.handleChange(event) }
+              />
             </div>
-          ) : (
-            <div>
-              <button
-                type="button"
-                onClick={ this.editExpense }
+          </div>
+          <div className="control">
+            <div className="select">
+              <select
+                data-testid="currency-input"
+                value={ currency }
+                name="currency"
+                onChange={ (event) => this.handleChange(event) }
               >
-                Editar Despesa
-              </button>
+                {
+                  currencies.map((item, index) => <option key={ index }>{item}</option>)
+                }
+              </select>
             </div>
-          )
-        }
-
-      </div>
+          </div>
+        </div>
+        <div>
+          <div className="control">
+            <div className="select">
+              <select
+                data-testid="method-input"
+                value={ method }
+                name="method"
+                onChange={ (event) => this.handleChange(event) }
+              >
+                <option>Dinheiro</option>
+                <option>Cartão de crédito</option>
+                <option>Cartão de débito</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="control">
+            <div className="select">
+              <select
+                data-testid="tag-input"
+                value={ tag }
+                name="tag"
+                onChange={ (event) => this.handleChange(event) }
+              >
+                <option>Alimentação</option>
+                <option>Lazer</option>
+                <option>Trabalho</option>
+                <option>Transporte</option>
+                <option>Saúde</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="field">
+          <button
+            className="button is-primary"
+            type="button"
+            onClick={ this.handleClick }
+          >
+            Adicionar Despesa
+          </button>
+        </div>
+      </form>
     );
   }
 }
@@ -148,7 +162,6 @@ const mapDispatchToProps = (dispatch) => ({
 WalletForm.propTypes = {
   currencies: PropTypes.instanceOf(Array).isRequired,
   fetchCoins: PropTypes.func.isRequired,
-  isDisabled: PropTypes.bool.isRequired,
   expenses: PropTypes.instanceOf(Array).isRequired,
   addExpense: PropTypes.func.isRequired,
 };

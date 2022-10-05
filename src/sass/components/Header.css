@@ -1,0 +1,22 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.total{
+  position: absolute;
+  margin-top: 90px;
+  left:12vw;
+}
+
+.img{
+  position: absolute;
+  margin-top: 40px;
+  right: 10vw;
+  
+}
+
+.total-stats{
+  color: rgb(70, 117, 218);
+  font-size: 17px;
+}

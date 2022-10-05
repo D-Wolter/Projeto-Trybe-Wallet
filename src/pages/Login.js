@@ -1,8 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { FaLock, FaUserAlt } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { userLogin } from '../redux/actions';
+import '../sass/pages/Login.css';
+import logo from '../img/Trybe-Wallet.png';
+import Footer from '../components/Footer';
 
 class Login extends React.Component {
   constructor() {
@@ -13,6 +17,7 @@ class Login extends React.Component {
       password: '',
       isDisabled: true,
       redirect: false,
+      focused: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -31,6 +36,10 @@ class Login extends React.Component {
     this.setState({ redirect: true });
   }
 
+  handleFocus(name) {
+    this.setState({ focused: name });
+  }
+
   disableButton() {
     const { email, password } = this.state;
     const regExpEmail = /^([a-z0-9]{1,}[._]{0,1}[a-z0-9]{1,})*(@[a-z0-9]{1,}.com)$/i;
@@ -43,14 +52,15 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email, password, isDisabled, redirect } = this.state;
+    const { email, password, isDisabled, redirect, focused } = this.state;
     return (
-      <div>
+      <div className="Login">
         { redirect && <Redirect to="/carteira" /> }
         { !redirect && (
           <form>
             <header />
-            <div>
+            <img className="imglogo" src={ logo } alt="Wallet" />
+            <div className="Login-input-container">
               <input
                 data-testid="email-input"
                 type="text"
@@ -58,9 +68,14 @@ class Login extends React.Component {
                 value={ email }
                 onChange={ this.handleInputChange }
                 placeholder="Usuário"
+                onFocus={ () => this.handleFocus('email') }
+                onBlur={ () => this.handleFocus('') }
               />
             </div>
-            <div>
+            <span className={ focused === 'email' ? 'icon-focus' : 'icon-blur' }>
+              <FaUserAlt />
+            </span>
+            <div className="Login-input-container">
               <input
                 data-testid="password-input"
                 type="password"
@@ -68,13 +83,19 @@ class Login extends React.Component {
                 value={ password }
                 onChange={ this.handleInputChange }
                 placeholder="Senha"
+                onFocus={ () => this.handleFocus('password') }
+                onBlur={ () => this.handleFocus('') }
               />
             </div>
+            <span className={ focused === 'password' ? 'icon-focus' : 'icon-blur' }>
+              <FaLock />
+            </span>
             <button type="button" disabled={ isDisabled } onClick={ this.handleSubmit }>
               ENTRAR
             </button>
           </form>
         ) }
+        <Footer />
       </div>
     );
   }
