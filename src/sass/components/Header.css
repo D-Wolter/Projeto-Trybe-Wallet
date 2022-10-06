@@ -1,12 +1,14 @@
 .header{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .total{
   position: absolute;
   margin-top: 90px;
   left:12vw;
+  
 }
 
 .img{
@@ -17,6 +19,11 @@
 }
 
 .total-stats{
+  color: rgb(67, 67, 67);
+  font-size: 20px;
+  
+}
+
+.email{
   color: rgb(70, 117, 218);
-  font-size: 17px;
 }

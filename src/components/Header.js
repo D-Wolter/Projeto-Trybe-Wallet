@@ -28,7 +28,7 @@ class Header extends Component {
         <img className="img" src={ logo } alt="Wallet" />
         <section className="total">
           <div className="total-stats">
-            <h3 data-testid="email-field">{ email }</h3>
+            <h3 data-testid="email-field" className="email">{ email }</h3>
           </div>
           <div className="total-stats">
             <h3 data-testid="total-field">{Number(getResult).toFixed(2)}</h3>
