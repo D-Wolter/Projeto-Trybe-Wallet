@@ -1,3 +1,4 @@
+## Trybe-Wallet: uma aplicação de controle de gastos que também permite conversão valores de outras moedas ##
 ## Habilidades Desenvolvidas: ##
 
 - Criar um store Redux em aplicações React;
